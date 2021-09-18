@@ -18,8 +18,10 @@ class Movie:
     @staticmethod
     def _get_backdrop(movie_message: dict):
         backdrop = movie_message["backdrop_path"]
-        if backdrop is None:
+        if backdrop is not "null":
             return backdrop
+        else:
+            return None
 
     @staticmethod
     def _get_year(movie_message: dict):
