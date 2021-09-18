@@ -1,12 +1,12 @@
 from typing import Optional
-from src.controllers.tmdb_requests import retrieve_movie_info_message, retrieve_cast_info_message
+from src.controllers.tmdb_requests import retrieve_movie_info_message, retrieve_credits_info_message
 
 
 class TMDBMessage:
     def __init__(self, movie_id) -> None:
         self.movie_id: str = movie_id
         self.movie_message: dict = retrieve_movie_info_message(self.movie_id)
-        self.cast_message: dict = retrieve_cast_info_message(self.movie_id)
+        self.credits_message: dict = retrieve_credits_info_message(self.movie_id)
 
 
 class MovieInfo:
@@ -27,8 +27,9 @@ class MovieInfo:
 
 
     def _get_director(self):
-        cast = self.movie.cast_message["cast"]
-        for worker in cast:
+        crew = self.movie.credits_message["crew"]
+        
+        for worker in crew:
             try:
                 if worker["job"] == "Director":
                     return worker["name"] 
