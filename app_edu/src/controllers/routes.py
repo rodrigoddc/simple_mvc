@@ -1,5 +1,5 @@
 from src.views.movies import render_movie_info_view
-from src.models.movie import retrieve_movie_info
+from src.models.helpers import retrieve_movie_info
 from fastapi import APIRouter
 
 
