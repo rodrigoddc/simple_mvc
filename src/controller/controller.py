@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from src.model import retrieve_movie
-from src.view import movie_view, retrieve_publish_response
+from src.model.model import retrieve_movie
+from src.view.view import movie_view, retrieve_publish_response
 
 router = APIRouter()
 
