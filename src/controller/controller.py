@@ -13,13 +13,3 @@ def movie_info(movie_id: int):
     response = movie_view(movie)
 
     return response
-
-
-@router.post("/filmes/{movie_id}")
-def movie_info(movie_id: int):
-
-    model = movie_view(movie)
-    response = retrieve_publish_response(movie_id)
-
-    return response
-
