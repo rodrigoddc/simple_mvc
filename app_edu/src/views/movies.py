@@ -1,4 +1,4 @@
-def render_movie_info_view(movie: dict):
+def render_movie_info(movie: dict):
 
     movie_view = {
         "title": movie.title,
