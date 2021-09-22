@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from model.model_movie_info import retrieve_movie
-from view.view_movie_info import movie_view, retrieve_publish_response
+from view.view import movie_view_info
+from model.model import MovieInfo
 
 router = APIRouter()
 
@@ -9,7 +9,7 @@ router = APIRouter()
 @router.get("/filmes/{movie_id}")
 def movie_info(movie_id: int):
 
-    movie = retrieve_movie(movie_id)
-    response = movie_view(movie)
+    movie = retrieve_movie_info(movie_id)
+    response = movie_view_info(movie)
 
     return response
