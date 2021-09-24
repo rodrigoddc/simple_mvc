@@ -1,15 +1,25 @@
 from typing import Optional
-from src.controllers.fetch_controller import (
-    retrieve_movie_info_message,
-    retrieve_credits_info_message,
-)
+import requests
 
 
 class TMDBMessage:
     def __init__(self, movie_id) -> None:
         self.movie_id: str = movie_id
-        self.movie_message: dict = retrieve_movie_info_message(self.movie_id)
-        self.credits_message: dict = retrieve_credits_info_message(self.movie_id)
+        self.movie_message: dict = self.retrieve_movie_info_message(self.movie_id)
+        self.credits_message: dict = self.retrieve_credits_info_message(self.movie_id)
+
+    def retrieve_movie_info_message(self, movie_id: str):
+        movie_url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={tmdb_api_key}"
+        response = requests.get(movie_url).json()
+        return response
+
+
+    def retrieve_credits_info_message(self, movie_id: str):
+        credits_url = (
+            f"https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key={tmdb_api_key}"
+        )
+        response = requests.get(credits_url).json()
+        return response
 
 
 class MovieInfo:

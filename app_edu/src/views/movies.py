@@ -1,4 +1,7 @@
-def render_movie_info(movie: dict):
+from src.models.movie_info import MovieInfo
+
+
+def render_movie_info(movie: MovieInfo):
 
     movie_view = {
         "title": movie.title,
