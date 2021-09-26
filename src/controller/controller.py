@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from src.view.movie_view import movie_view
-from model.movie_model import MovieInfo
+from src.model.movie_model import MovieInfo
 
 router = APIRouter()
 
