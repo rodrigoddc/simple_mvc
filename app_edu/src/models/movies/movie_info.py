@@ -1,29 +1,31 @@
 from typing import Optional
 import requests
+from setup.settings import Settings
 
 
 class TMDBMessage:
-    def __init__(self, movie_id) -> None:
+    def __init__(self, movie_id: int) -> None:
         self.movie_id: str = movie_id
         self.movie_message: dict = self.retrieve_movie_info_message(self.movie_id)
         self.credits_message: dict = self.retrieve_credits_info_message(self.movie_id)
+        self.tmdb_api_key = Settings().tmdb_api_key
 
-    def retrieve_movie_info_message(self, movie_id: str):
-        movie_url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={tmdb_api_key}"
+    def retrieve_movie_info_message(self):
+        movie_url = f"https://api.themoviedb.org/3/movie/{self.movie_id}?api_key={self.tmdb_api_key}"
         response = requests.get(movie_url).json()
         return response
 
 
-    def retrieve_credits_info_message(self, movie_id: str):
+    def retrieve_credits_info_message(self):
         credits_url = (
-            f"https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key={tmdb_api_key}"
+            f"https://api.themoviedb.org/3/movie/{self.movie_id}/credits?api_key={self.tmdb_api_key}"
         )
         response = requests.get(credits_url).json()
         return response
 
 
 class MovieInfo:
-    def __init__(self, movie_id: str):
+    def __init__(self, movie_id: int):
         self.movie = TMDBMessage(movie_id)
         self.title: str = self._get_title()
         self.year: int = self._get_year()

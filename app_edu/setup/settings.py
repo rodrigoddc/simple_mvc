@@ -7,7 +7,3 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ".env"
-
-
-settings = Settings()
-tmdb_api_key = settings.tmdb_api_key
