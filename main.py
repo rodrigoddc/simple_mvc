@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from src.controller.controller import router
+from src.movie.controller.movie_controller import router
 
 app = FastAPI(
     title="Simple MVC API",
