@@ -1,4 +1,4 @@
-from src.movie.model.movie_model import MovieInfo
+from src.movie.model.movie_info_model import MovieInfo
 
 
 def movie_view(movie: MovieInfo):
