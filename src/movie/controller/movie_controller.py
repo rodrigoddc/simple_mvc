@@ -23,4 +23,4 @@ def movie_rating(movie_id: int, rating: float):
     movie_rating = MovieRating(movie_id, rating)
     response = movie_rating.publish_rating
 
-    return response.json()
+    return response
