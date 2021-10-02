@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from src.movie.view.movie_view import movie_view
 from src.movie.model.movie_info_model import MovieInfo
 from src.movie.model.movie_rating_model import MovieRating
+import json
 
 
 router = APIRouter()
@@ -22,4 +23,4 @@ def movie_rating(movie_id: int, rating: float):
     movie_rating = MovieRating(movie_id, rating)
     response = movie_rating.publish_rating
 
-    return response
+    return response.json()
