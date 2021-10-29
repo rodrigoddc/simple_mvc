@@ -14,15 +14,12 @@ def movie_info(movie_id: int):
     return response
 
 
-@router.post("/movie_rating/{movie_id}/new/{rating}")
-def movie_rating_post(movie_id: int, rating: float):
-    movie = MovieRating(movie_id, rating)
-    movie.validate_movie_rating()
-    response = movie.publish_movie_rating()
+@router.post("/movie_rating/{movie_id}/publish/")
+def movie_rating_post(movie_id: int, rating: MovieRating):
 
-    return response
+    return {}
 
-@router.put("/movie_rating/{movie_id}/update/{rating}")
+@router.put("/movie_rating/{movie_id}/update/")
 def movie_rating_update(movie_id: int, rating: float):
     movie = MovieRating(movie_id, rating)
     response = movie.update_movie_rating()
