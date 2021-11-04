@@ -1,6 +1,5 @@
 import requests
 from requests.sessions import session
-from src.dependencies import api_key
 import json
 
 

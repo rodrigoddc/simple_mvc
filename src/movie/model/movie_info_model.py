@@ -1,5 +1,4 @@
 import requests
-from src.dependencies import api_key
 
 
 class MovieInfo:
