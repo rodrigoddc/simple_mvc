@@ -1,11 +1,12 @@
 import requests
+from config import tmdb_api_key
 from requests.sessions import session
 import json
 
 
 class MovieRating:
     def __init__(self, movie_id: int, rating: float):
-        self.api_key = api_key
+        self.api_key = tmdb_api_key
         self.movie_id = movie_id
         self.rating = {"rating": rating}
         self.headers = {"Content-Type": "application/json;charset=utf-8"}

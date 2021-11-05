@@ -1,9 +1,9 @@
 import requests
-
+from config import tmdb_api_key
 
 class MovieInfo:
     def __init__(self, movie_id: int):
-        self.api_key = api_key
+        self.api_key = tmdb_api_key
         self.movie_id = movie_id
         self.movie_info = self.retrieve_movie_info()
         self.credits_info = self.retrieve_credits_info()
