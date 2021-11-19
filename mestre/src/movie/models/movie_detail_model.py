@@ -1,5 +1,6 @@
 from pydantic import BaseModel, root_validator
 
+from setup.config import settings
 from src.exceptions.movie_exceptions import MovieMissingDataFromTMDBAPIException
 from src.movie.models.tmdb_api_caller import tmdb_api_caller
 
@@ -28,7 +29,7 @@ class MovieDetail(BaseModel):
             )
 
         values["title"] = values["title"]
-        values["backdrop"] = values["backdrop_path"]
+        values["backdrop"] = f'{settings.TMDB_BASE_IMAGE_URL}{values["backdrop_path"]}'
         values["release_date"] = values["release_date"]
 
         for crew_dict in values["crew"]:
