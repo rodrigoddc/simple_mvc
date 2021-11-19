@@ -15,17 +15,17 @@ class MovieDetail(BaseModel):
     def build_movie_detail(cls, values):
         if not values["title"]:
             raise MovieMissingDataFromTMDBAPIException(
-                f"Faltou o 'title' - response: '{values}'"
+                f"Faltou o 'title' - A API do TMDB deixou a desejar com esse campo"
             )
 
         elif not values["release_date"]:
             raise MovieMissingDataFromTMDBAPIException(
-                f"Faltou o 'release_date' - response: '{values}'"
+                f"Faltou o 'release_date' - A API do TMDB deixou a desejar com esse campo"
             )
 
         elif not values["backdrop_path"]:
             raise MovieMissingDataFromTMDBAPIException(
-                f"Faltou o 'backdrop' - response: '{values}'"
+                f"Faltou o 'backdrop' - A API do TMDB deixou a desejar com esse campo"
             )
 
         values["title"] = values["title"]
@@ -39,7 +39,7 @@ class MovieDetail(BaseModel):
 
         if not values["director"]:
             raise MovieMissingDataFromTMDBAPIException(
-                f"Faltou o 'director' - response: '{values}'"
+                f"Faltou o 'director' - A API do TMDB deixou a desejar com esse campo"
             )
 
         return values
