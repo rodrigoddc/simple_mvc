@@ -13,6 +13,6 @@ def movie_detail(movie_id: int):
     crew_data = get_movie_crew_data(movie_id)
     needed_data = movie_data | crew_data
     model = MovieDetail(**needed_data)
-    view = movie_details_view(movie_id, model)
+    view = movie_detail_view(movie_id, model)
 
     return view
