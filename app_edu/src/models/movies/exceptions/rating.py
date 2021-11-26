@@ -1,12 +1,6 @@
 class MovieRatingException(Exception):
-    def __init__(self, *args):
-        if args:
-            self.message = args[0]
-        else:
-            self.message = None
-
-    def __str__(self):
-        if self.message:
-            return f"MovieRatingException: {self.message}"
-        else:
-            return 'MovieRatingException has been raised'
+    def __init__(self, message):
+        self.message = f"MovieRatingException: {message}"
+class MovieIdException(Exception):
+    def __init__(self, message):
+        self.message = f"MovieIdException: {message}"
