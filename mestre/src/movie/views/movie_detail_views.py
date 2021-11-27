@@ -1,4 +1,4 @@
-from src.movie.models.movie_detail_model import MovieDetail
+from mestre.src.movie.models.movie_detail_model import MovieDetail
 
 
 def movie_detail_view(movie_id: int, model: MovieDetail):

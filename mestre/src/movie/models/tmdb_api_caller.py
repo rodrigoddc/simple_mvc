@@ -1,7 +1,7 @@
 from requests import request
 
-from setup.config import settings
-from src.exceptions.movie_exceptions import MovieNotFoundException
+from mestre.setup.config import settings
+from mestre.src.exceptions.movie_exceptions import MovieNotFoundException
 
 
 def tmdb_api_caller(

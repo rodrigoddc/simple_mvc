@@ -1,8 +1,8 @@
 from pydantic import BaseModel, root_validator
 
-from setup.config import settings
-from src.exceptions.movie_exceptions import MovieMissingDataFromTMDBAPIException
-from src.movie.models.tmdb_api_caller import tmdb_api_caller
+from mestre.setup.config import settings
+from mestre.src.exceptions.movie_exceptions import MovieMissingDataFromTMDBAPIException
+from mestre.src.movie.models.tmdb_api_caller import tmdb_api_caller
 
 
 class MovieDetail(BaseModel):
