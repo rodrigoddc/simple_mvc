@@ -1,7 +1,7 @@
 from fastapi import Request
 from fastapi.responses import JSONResponse
 
-from src.exceptions.movie_exceptions import MovieRatingException, MovieNotFoundException, \
+from mestre.src.exceptions.movie_exceptions import MovieRatingException, MovieNotFoundException, \
     MovieMissingDataFromTMDBAPIException
 
 

@@ -1,7 +1,7 @@
 from pydantic import BaseModel, validator
 
-from src.exceptions.movie_exceptions import MovieRatingException
-from src.movie.models.tmdb_api_caller import tmdb_api_caller
+from mestre.src.exceptions.movie_exceptions import MovieRatingException
+from mestre.src.movie.models.tmdb_api_caller import tmdb_api_caller
 
 
 class Rating(BaseModel):

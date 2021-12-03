@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
-from src.movie.models.movie_detail_model import MovieDetail, get_movie_details
-from src.movie.models.movie_detail_model import get_movie_crew_data
-from src.movie.views.movie_detail_views import movie_detail_view
+from mestre.src.movie.models.movie_detail_model import MovieDetail, get_movie_details
+from mestre.src.movie.models.movie_detail_model import get_movie_crew_data
+from mestre.src.movie.views.movie_detail_views import movie_detail_view
 
 movie_detail_router = APIRouter()
 
