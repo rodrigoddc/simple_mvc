@@ -53,9 +53,9 @@ def executar_processamentos():
         loop.create_task(quinto_processamento_demorado())
     ]
 
-    esperaveis = asyncio.wait(tasks)
+    agenda_de_tarefas = asyncio.wait(tasks)
 
-    loop.run_until_complete(esperaveis)
+    loop.run_until_complete(agenda_de_tarefas)
 
     loop.close()
 
