@@ -1,8 +1,8 @@
+import asyncio, aiohttp
 from pydantic import BaseModel, root_validator
-
 from mestre.setup.config import settings
 from mestre.src.exceptions.movie_exceptions import MovieMissingDataFromTMDBAPIException
-from mestre.src.movie.models.tmdb_api_caller import tmdb_api_caller
+from mestre.src.movie.models.tmdb_api_caller import tmdb_api_caller, tmdb_response_handler
 
 
 class MovieDetail(BaseModel):
@@ -44,24 +44,35 @@ class MovieDetail(BaseModel):
 
         return values
 
+def _movie_details_url(movie_id: int):
+    return f"movie/{movie_id}"
 
-def get_movie_details(movie_id: int):
-    url = f"movie/{movie_id}"
+def _movie_crew_url(movie_id: int):
+    return f"movie/{movie_id}/credits"
 
-    response = tmdb_api_caller(
-        method="GET",
-        url=url
-    )
+def get_tasks(urls, session):
+    tasks = []
+    for url in urls:
+        tasks.append(asyncio.create_task(
+            tmdb_api_caller(
+                url=url, 
+                method="GET", 
+                session=session
+                )
+            )
+        )
+    return tasks
 
-    return response
-
-
-def get_movie_crew_data(movie_id: int):
-    url = f"movie/{movie_id}/credits"
-
-    response = tmdb_api_caller(
-        method="GET",
-        url=url
-    )
-
-    return response
+async def fetch_movie_details_and_movie_crew(movie_id):
+    urls = [
+        _movie_details_url(movie_id), 
+        _movie_crew_url(movie_id)
+    ]
+    async with aiohttp.ClientSession() as session:
+        results = []
+        tasks = get_tasks(urls, session)
+        responses = await asyncio.gather(*tasks)
+        for response in responses:
+            results.append(await tmdb_response_handler(response))
+        
+        return results

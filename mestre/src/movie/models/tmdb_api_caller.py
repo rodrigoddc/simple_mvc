@@ -1,5 +1,4 @@
-from requests import request
-
+import aiohttp
 from mestre.setup.config import settings
 from mestre.src.exceptions.movie_exceptions import MovieNotFoundException
 
@@ -7,6 +6,7 @@ from mestre.src.exceptions.movie_exceptions import MovieNotFoundException
 def tmdb_api_caller(
         method: str,
         url: str,
+        session: aiohttp.ClientSession,
         headers: dict = None,
         params: dict = None,
         data: dict = None,
@@ -24,28 +24,26 @@ def tmdb_api_caller(
             "content-type": "application/json",
         }
 
-    timeout_deafult = timeout
+    timeout_default = timeout
 
     if not timeout:
-        timeout_deafult = settings.TMDB_API_DEFAULT_TIMEOUT
+        timeout_default = settings.TMDB_API_DEFAULT_TIMEOUT
 
-    raw_response = request(
+    raw_response = session.request(
         method=method,
-        headers=headers_default,
         url=url_final,
         params=params,
         data=data,
-        timeout=timeout_deafult
+        timeout=timeout_default,
+        headers=headers_default,
     )
 
-    response = tmdb_response_handler(raw_response)
-
-    return response
+    return raw_response
 
 
 def tmdb_response_handler(response):
 
-    if response.status_code == 404:
+    if response.status == 404:
         raise MovieNotFoundException("Filme não encontrado")
 
     elif not response.ok:
