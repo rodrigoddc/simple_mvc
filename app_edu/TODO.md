@@ -1,5 +1,1 @@
-1. tratar exceções corretamente [x]
-2. validar movie_id [x]
-3. [criar camada de handlers http](https://fastapi.tiangolo.com/tutorial/handling-errors/) [ ]
-4. fazer as requisições corretamente [ ]
-5. camada de views [ ]
+1. Adicionar design pattern pedido no último no Dojo.
