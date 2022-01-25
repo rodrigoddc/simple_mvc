@@ -3,4 +3,5 @@ uvicorn[standard]
 requests
 aiohttp
 python-dotenv
+pydantic
 rich

@@ -1,6 +1,6 @@
 import aiohttp
-from mestre.setup.config import settings
-from mestre.src.exceptions.movie_exceptions import MovieNotFoundException
+from setup.settings import Settings
+from src.models.movies.exceptions.notfound import MovieNotFoundException
 
 
 def tmdb_api_caller(
@@ -13,8 +13,8 @@ def tmdb_api_caller(
         timeout: int = None
 ):
 
-    base_url = settings.TMDB_URL_V3
-    api_key = settings.TMDB_API_KEY
+    api_key = Settings().tmdb_api_key
+    base_url = Settings().info_request_base_url
     url_final = f"{base_url}{url}?api_key={api_key}"
 
     headers_default = headers
@@ -27,7 +27,7 @@ def tmdb_api_caller(
     timeout_default = timeout
 
     if not timeout:
-        timeout_default = settings.TMDB_API_DEFAULT_TIMEOUT
+        timeout_default = Settings().tmdb_api_timeout_default
 
     raw_response = session.request(
         method=method,
