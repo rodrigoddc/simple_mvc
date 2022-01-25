@@ -1,6 +1,5 @@
 import asyncio
 from time import perf_counter
-from random import randint
 from rich.console import Console
 
 console = Console(color_system="windows")
