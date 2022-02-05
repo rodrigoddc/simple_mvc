@@ -1,12 +1,13 @@
 import aiohttp
 from setup.settings import Settings
 from src.models.movies.exceptions.notfound import MovieNotFoundException
+import requests
 
 
 def tmdb_api_caller(
         method: str,
         url: str,
-        session: aiohttp.ClientSession,
+        session: aiohttp.ClientSession = None,
         headers: dict = None,
         params: dict = None,
         data: dict = None,
@@ -29,21 +30,36 @@ def tmdb_api_caller(
     if not timeout:
         timeout_default = Settings().tmdb_api_timeout_default
 
-    raw_response = session.request(
-        method=method,
-        url=url_final,
-        params=params,
-        data=data,
-        timeout=timeout_default,
-        headers=headers_default,
-    )
+    if session:
+        raw_response = session.request(
+            method=method,
+            url=url_final,
+            params=params,
+            data=data,
+            timeout=timeout_default,
+            headers=headers_default,
+        )
 
-    return raw_response
+        return raw_response
+    
+    return requests.request(
+            method=method,
+            url=url_final,
+            params=params,
+            data=data,
+            timeout=timeout_default,
+            headers=headers_default,
+        )
 
 
 def tmdb_response_handler(response):
 
-    if response.status == 404:
+    try:
+        status = response.status
+    except:
+        status = response.status_code
+
+    if status == 404:
         raise MovieNotFoundException("Filme não encontrado")
 
     elif not response.ok:

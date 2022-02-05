@@ -1,1 +1,1 @@
-1. Adicionar design pattern pedido no último no Dojo.
+1. Adicionar strategy pattern pedido no último no Dojo.
